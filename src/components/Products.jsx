@@ -108,19 +108,9 @@ const addToCart=(product)=>{
         </div>
 
 
-            <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200">
-              <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center transition-transform duration-800 ease-out hover:scale-110  " />
-            </div>
-            <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
-            <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>
-            <p className="text-sm text-gray-700 mb-3">{item.description}</p>
-            <p className="text-gray-900 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{item.price}</p>
-            <div className='  w-full p-4 rounded-lg items-center gap-6 ' onClick={(e)=>{
-              e.stopPropagation();
-            }}>
+           
               {/* <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p> */}
         
-            </div>
             </div>
           </motion.div>
         ))}

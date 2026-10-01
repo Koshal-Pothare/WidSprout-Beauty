@@ -16,6 +16,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  /* =====================================================
+     LOGIN STATUS
+  ===================================================== */
+
   useEffect(() => {
     const LoggedIn = JSON.parse(
       localStorage.getItem("isuserLoggedIn") || "false"
@@ -23,6 +27,10 @@ const Navbar = () => {
 
     setUserLoggedIn(LoggedIn);
   }, []);
+
+  /* =====================================================
+     NAVBAR SCROLL
+  ===================================================== */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +43,10 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  /* =====================================================
+     MENU
+  ===================================================== */
 
   const menu = [
     {
@@ -142,20 +154,8 @@ const Navbar = () => {
   };
 
   /* =====================================================
-     ANIMATION
+     MOBILE MENU ANIMATION
   ===================================================== */
-
-  const navVariants = {
-    hidden: {
-      y: -20,
-      opacity: 0,
-    },
-
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
 
   const mobileMenuVariants = {
     hidden: {
@@ -179,6 +179,10 @@ const Navbar = () => {
     },
   };
 
+  /* =====================================================
+     MOBILE ITEM ANIMATION
+  ===================================================== */
+
   const mobileItemVariants = {
     hidden: {
       opacity: 0,
@@ -190,6 +194,10 @@ const Navbar = () => {
       x: 0,
     },
   };
+
+  /* =====================================================
+     PROFILE DROPDOWN ANIMATION
+  ===================================================== */
 
   const dropdownVariants = {
     hidden: {
@@ -222,18 +230,16 @@ const Navbar = () => {
 
   return (
     <nav>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={navVariants}
-        transition={{
-          duration: 1,
-          ease: "easeOut",
-        }}
+      {/* =====================================================
+          MAIN NAVBAR
+          No Framer Motion on this container so text stays sharp
+      ===================================================== */}
+
+      <div
         className={`fixed top-0 left-0 z-50 flex w-full items-center justify-between p-3 md:justify-around lg:justify-around ${
           scrolled
             ? "bg-[#f7e7cc] shadow-md"
-            : "bg-transparent backdrop-blur-xs"
+            : "bg-transparent"
         }`}
       >
         {/* =====================================================
@@ -410,7 +416,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* =====================================================
           MOBILE MENU OVERLAY + SIDE DRAWER
