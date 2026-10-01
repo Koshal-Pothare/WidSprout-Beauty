@@ -13,6 +13,16 @@ import Reviews from './components/Reviews'
 import Footer from './components/Footer'
 
 
+
+import AllProducts from './components/AllProducts'
+import Login from './components/Login'
+import Cart from './components/Cart'
+import Contact from './components/Contact'
+import AdminPanel from './components/AdminPanel'
+import UserPanel from './components/UserPanel'
+import { ToastContainer,toast,Bounce } from 'react-toastify';
+
+
 import AllProducts from './Pages/AllProducts'
 import AboutUs from './Pages/AboutUs'
 import Login from './auth/Login'
@@ -54,9 +64,28 @@ const hideLayout = [
   return (
     <>
 
+
    
 
      {!hideNavbarFooter && <Navbar />} 
+
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+      transition={Bounce}
+      />
+
+
+       <Navbar /> {/* ✅ Always visible */}
+
 
       <Routes>
         <Route

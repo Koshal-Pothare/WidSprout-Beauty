@@ -7,7 +7,7 @@ import home2 from '../assets/home2.png';
 const About = () => {
   return (
     <section  className="w-full py-12 md:py-24 scroll-mt-28  relative  h-full md:h-[800px] overflow-hidden " >
-        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6   'id='About' >
+        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6' id='About' >
 
  
           

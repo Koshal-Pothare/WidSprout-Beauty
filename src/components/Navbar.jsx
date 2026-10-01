@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FiX, FiMenu } from "react-icons/fi";
-import { Link, useNavigate, useLocation, NavLink } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
 import { IoMdPerson } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,7 +15,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const LoggedIn = JSON.parse(
@@ -104,15 +103,8 @@ const Navbar = () => {
     window.addEventListener("cartCleared", handleCartCleared);
 
     return () => {
-      window.removeEventListener(
-        "cartUpdated",
-        handleCartUpdated
-      );
-
-      window.removeEventListener(
-        "cartCleared",
-        handleCartCleared
-      );
+      window.removeEventListener("cartUpdated", handleCartUpdated);
+      window.removeEventListener("cartCleared", handleCartCleared);
     };
   }, []);
 
@@ -244,26 +236,21 @@ const Navbar = () => {
             : "bg-transparent backdrop-blur-xs"
         }`}
       >
-
         {/* =====================================================
             LOGO
         ===================================================== */}
 
         <Link to="/" onClick={closeMobileMenu}>
           <div className="flex items-center justify-center">
-
             <img
               src={logo1}
               className="h-9 w-9 sm:h-12 sm:w-12 md:h-12 md:w-12 lg:h-12 lg:w-12"
               alt="WildSprout logo"
             />
 
-            {/* Desktop brand name only */}
-
             <h1 className="hidden text-md font-serif tracking-wider sm:text-xl md:block md:text-2xl lg:text-3xl">
               WildSprout
             </h1>
-
           </div>
         </Link>
 
@@ -273,7 +260,6 @@ const Navbar = () => {
 
         <div>
           <ul className="hidden items-center gap-2 md:flex">
-
             {menu.map((item) => (
               <li
                 key={item.id}
@@ -311,7 +297,6 @@ const Navbar = () => {
                 </NavLink>
               </li>
             ))}
-
           </ul>
 
           {/* =====================================================
@@ -319,7 +304,6 @@ const Navbar = () => {
           ===================================================== */}
 
           <div className="flex items-center md:hidden">
-
             <button
               onClick={() => setIsMenuOpen(true)}
               className="flex h-10 w-10 items-center justify-center text-2xl text-gray-800 transition-all hover:text-amber-700"
@@ -327,9 +311,7 @@ const Navbar = () => {
             >
               <FiMenu />
             </button>
-
           </div>
-
         </div>
 
         {/* =====================================================
@@ -337,18 +319,14 @@ const Navbar = () => {
         ===================================================== */}
 
         <div className="hidden items-center justify-around gap-4 md:flex md:w-50">
-
           {/* CART */}
 
           <div className="relative">
-
             <Link to="/cart">
-
               <IoCartOutline
                 size={25}
                 className="transition-all hover:scale-110"
               />
-
             </Link>
 
             {count > 0 && (
@@ -360,7 +338,6 @@ const Navbar = () => {
                 {count}
               </motion.span>
             )}
-
           </div>
 
           {/* PROFILE */}
@@ -372,21 +349,17 @@ const Navbar = () => {
             }
             onMouseLeave={() => setHoverProfile(false)}
           >
-
             {userLoggedIn ? (
               <>
                 <div className="flex cursor-pointer items-center gap-1">
-
                   <IoMdPerson size={18} />
 
                   {userName}
-
                 </div>
 
                 {/* PROFILE DROPDOWN */}
 
                 <AnimatePresence>
-
                   {hoverProfile && (
                     <motion.div
                       initial="hidden"
@@ -395,9 +368,7 @@ const Navbar = () => {
                       variants={dropdownVariants}
                       className="absolute right-0 top-full mt-5 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl"
                     >
-
                       <div className="py-2">
-
                         <Link
                           to="/userDashboard"
                           onClick={() => setHoverProfile(false)}
@@ -423,17 +394,12 @@ const Navbar = () => {
                         >
                           Logout
                         </motion.button>
-
                       </div>
-
                     </motion.div>
                   )}
-
                 </AnimatePresence>
-
               </>
             ) : (
-
               <button
                 onClick={() => navigate("/login")}
                 className="flex items-center gap-1"
@@ -441,13 +407,9 @@ const Navbar = () => {
                 <IoMdPerson size={18} />
                 Sign Up
               </button>
-
             )}
-
           </div>
-
         </div>
-
       </motion.div>
 
       {/* =====================================================
@@ -455,7 +417,6 @@ const Navbar = () => {
       ===================================================== */}
 
       <AnimatePresence>
-
         {isMenuOpen && (
           <>
             {/* OVERLAY */}
@@ -478,19 +439,16 @@ const Navbar = () => {
               variants={mobileMenuVariants}
               className="fixed right-0 top-0 z-[70] flex h-screen w-[85%] max-w-[360px] flex-col bg-white shadow-2xl md:hidden"
             >
-
               {/* =================================================
                   DRAWER HEADER
               ================================================= */}
 
               <div className="flex items-center justify-between border-b border-amber-200 bg-[#f7e7cc] px-5 py-4">
-
                 <Link
                   to="/"
                   onClick={closeMobileMenu}
                   className="flex items-center gap-2"
                 >
-
                   <img
                     src={logo1}
                     alt="WildSprout"
@@ -500,7 +458,6 @@ const Navbar = () => {
                   <span className="font-serif text-xl tracking-wide text-gray-900">
                     WildSprout
                   </span>
-
                 </Link>
 
                 <button
@@ -510,7 +467,6 @@ const Navbar = () => {
                 >
                   <FiX />
                 </button>
-
               </div>
 
               {/* =================================================
@@ -518,7 +474,6 @@ const Navbar = () => {
               ================================================= */}
 
               <div className="flex-1 overflow-y-auto px-5 py-6">
-
                 <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
                   Menu
                 </p>
@@ -532,14 +487,11 @@ const Navbar = () => {
                   }}
                   className="space-y-2"
                 >
-
                   {menu.map((item) => (
-
                     <motion.div
                       key={item.id}
                       variants={mobileItemVariants}
                     >
-
                       <NavLink
                         to={item.path}
                         onClick={closeMobileMenu}
@@ -551,7 +503,6 @@ const Navbar = () => {
                           }`
                         }
                       >
-
                         {({ isActive }) => (
                           <>
                             <span>{item.label}</span>
@@ -561,13 +512,9 @@ const Navbar = () => {
                             )}
                           </>
                         )}
-
                       </NavLink>
-
                     </motion.div>
-
                   ))}
-
                 </motion.div>
 
                 {/* =================================================
@@ -575,7 +522,6 @@ const Navbar = () => {
                 ================================================= */}
 
                 <div className="mt-8">
-
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
                     Shopping
                   </p>
@@ -589,23 +535,18 @@ const Navbar = () => {
                     }}
                     className="space-y-2"
                   >
-
                     {/* CART */}
 
                     <motion.div variants={mobileItemVariants}>
-
                       <Link
                         to="/cart"
                         onClick={closeMobileMenu}
                         className="flex items-center justify-between rounded-xl border border-transparent px-4 py-3.5 text-base font-semibold text-gray-800 transition-all hover:border-amber-200 hover:bg-rose-50 hover:text-amber-700"
                       >
-
                         <div className="flex items-center gap-3">
-
                           <IoCartOutline size={22} />
 
                           <span>Cart</span>
-
                         </div>
 
                         {count > 0 && (
@@ -613,35 +554,25 @@ const Navbar = () => {
                             {count}
                           </span>
                         )}
-
                       </Link>
-
                     </motion.div>
 
                     {/* WISHLIST */}
 
                     <motion.div variants={mobileItemVariants}>
-
                       <Link
                         to="/wishlist"
                         onClick={closeMobileMenu}
                         className="flex items-center justify-between rounded-xl border border-transparent px-4 py-3.5 text-base font-semibold text-gray-800 transition-all hover:border-amber-200 hover:bg-rose-50 hover:text-amber-700"
                       >
-
                         <div className="flex items-center gap-3">
-
                           <IoHeartOutline size={22} />
 
                           <span>Wishlist</span>
-
                         </div>
-
                       </Link>
-
                     </motion.div>
-
                   </motion.div>
-
                 </div>
 
                 {/* =================================================
@@ -649,7 +580,6 @@ const Navbar = () => {
                 ================================================= */}
 
                 <div className="mt-8">
-
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
                     Account
                   </p>
@@ -663,71 +593,51 @@ const Navbar = () => {
                     }}
                     className="space-y-2"
                   >
-
                     {userLoggedIn ? (
                       <>
-
                         {/* DASHBOARD */}
 
                         <motion.div variants={mobileItemVariants}>
-
                           <Link
                             to="/userDashboard"
                             onClick={closeMobileMenu}
                             className="flex items-center gap-3 rounded-xl border border-transparent px-4 py-3.5 text-base font-semibold text-gray-800 transition-all hover:border-amber-200 hover:bg-rose-50 hover:text-amber-700"
                           >
-
                             <IoMdPerson size={22} />
 
                             <span>Dashboard</span>
-
                           </Link>
-
                         </motion.div>
 
                         {/* LOGOUT */}
 
                         <motion.div variants={mobileItemVariants}>
-
                           <button
                             onClick={handleLogout}
                             className="flex w-full items-center gap-3 rounded-xl border border-transparent px-4 py-3.5 text-left text-base font-semibold text-red-600 transition-all hover:border-red-200 hover:bg-red-50"
                           >
-
                             <FiX size={21} />
 
                             <span>Logout</span>
-
                           </button>
-
                         </motion.div>
-
                       </>
                     ) : (
-
                       /* LOGIN */
 
                       <motion.div variants={mobileItemVariants}>
-
                         <button
                           onClick={handleLoginClick}
                           className="flex w-full items-center gap-3 rounded-xl border border-amber-700 bg-amber-700 px-4 py-3.5 text-left text-base font-semibold text-amber-100 shadow-md transition-all hover:bg-amber-800"
                         >
-
                           <IoMdPerson size={22} />
 
                           <span>Login</span>
-
                         </button>
-
                       </motion.div>
-
                     )}
-
                   </motion.div>
-
                 </div>
-
               </div>
 
               {/* =================================================
@@ -735,7 +645,6 @@ const Navbar = () => {
               ================================================= */}
 
               <div className="border-t border-amber-200 bg-rose-50 px-5 py-5">
-
                 <p className="text-center font-serif text-lg text-amber-700">
                   Good Skin. Good Vibes.
                 </p>
@@ -743,13 +652,10 @@ const Navbar = () => {
                 <p className="mt-1 text-center text-xs text-gray-600">
                   Natural skincare by WildSprout Beauty
                 </p>
-
               </div>
-
             </motion.div>
           </>
         )}
-
       </AnimatePresence>
     </nav>
   );
