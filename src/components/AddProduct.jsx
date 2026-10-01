@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { addProduct, updateProduct } from "../services/ProductService.js"
+
 
 import { addProduct, updateProduct } from "../services/ProductService"
 
