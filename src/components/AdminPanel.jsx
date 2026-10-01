@@ -7,11 +7,6 @@ import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import AddProduct from './AddProduct';
 
-import { login } from "../services/api.js";
-import { deleteProduct, getAllProducts , updateProduct } from "../services/ProductService.js";
-import { getAllReviews, deleteReview } from "../services/ReviewService.js";
-import { toast } from "react-toastify";
-import { totalOrders } from "../services/OrderService.js";
 
 import { login } from "../services/api";
 import { deleteProduct, getAllProducts , updateProduct } from "../services/ProductService";
