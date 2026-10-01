@@ -6,20 +6,15 @@ import {  Routes, Route,useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar'
 import Home from './Pages/Home'
-import Landingpage from './Pages/Landingpage'
-import About from './components/About'
-import Products from './components/Products'
-import Reviews from './components/Reviews'
+
 import Footer from './components/Footer'
 
 
 
-import AllProducts from './components/AllProducts'
-import Login from './components/Login'
-import Cart from './components/Cart'
-import Contact from './components/Contact'
-import AdminPanel from './components/AdminPanel'
-import UserPanel from './components/UserPanel'
+
+
+
+
 import { ToastContainer,toast,Bounce } from 'react-toastify';
 
 
