@@ -14,8 +14,8 @@ import {Link} from 'react-router-dom'
 
 
 import React from "react";
-import { FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+
+
 
 const Footer = () => {
 
