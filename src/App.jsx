@@ -1,25 +1,30 @@
 import React from 'react'
 import './App.css'
-import { useState } from 'react'
-import {  Routes, Route } from 'react-router-dom';
+import { useState,useEffect } from 'react'
+import {  Routes, Route,useLocation } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Landingpage from './components/Landingpage'
+import Home from './Pages/Home'
+import Landingpage from './Pages/Landingpage'
 import About from './components/About'
 import Products from './components/Products'
 import Reviews from './components/Reviews'
 import Footer from './components/Footer'
 
-import Feedback from './components/Feedback'
-import AllProducts from './components/AllProducts'
-import Login from './components/Login'
-import Cart from './components/Cart'
-import Contact from './components/Contact'
-import AdminPanel from './components/AdminPanel'
-import UserPanel from './components/UserPanel'
 
+import AllProducts from './Pages/AllProducts'
+import AboutUs from './Pages/AboutUs'
+import Login from './auth/Login'
+import Cart from './Pages/Cart'
+import Contact from './Pages/Contact'
+import AdminPanel from './components/AdminPanel'
+import UserDashboard from './user/UserDashboard'
+import { ToastContainer,toast,Bounce } from 'react-toastify';
+import OAuthSuccess from './components/OAuthSuccess';
+
+import AdminRegister from './auth/AdminRegister';
+import AdminLogin from './auth/AdminLogin';
 
 
 
@@ -29,10 +34,29 @@ import UserPanel from './components/UserPanel'
 function App() {
 
   const [refresh , setRefresh] = useState(0);
+   const location = useLocation();
+
+   useEffect(()=>{
+    window.scrollTo(0,0)
+   },[location.pathname]);
+
+const hideLayout = [
+  "/admin-register",
+  "/admin-login",
+  "/login",
+  "/admin-panel",
+  "/userDashboard",
+  "/oauth-success"
+]
+
+  const hideNavbarFooter = hideLayout.some((route)=>location.pathname.startsWith(route))
  
   return (
     <>
-       <Navbar /> {/* ✅ Always visible */}
+
+   
+
+     {!hideNavbarFooter && <Navbar />} 
 
       <Routes>
         <Route
@@ -40,14 +64,36 @@ function App() {
           element={<Home refresh={refresh} setRefresh={setRefresh} />}
         />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/all_products" element={<AllProducts />} />
+        <Route path="/all-products" element={<AllProducts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/user" element={<UserPanel />} />
+        <Route path="/admin-panel" element={<AdminPanel />} />
+        <Route path="/userDashboard" element={<UserDashboard />} />
+        <Route path="/oauth-success" element={<OAuthSuccess/>} />
+        <Route path ='/admin-register' element={<AdminRegister/>} />
+          <Route path ='/admin-login' element={<AdminLogin/>} />
+          <Route path ="/about-us" element={<AboutUs/>} />
       </Routes>
     
+       {!hideNavbarFooter && <Footer />}
  
+
+
+ <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+      transition={Bounce}
+      />
+
+
 
     </>
   )

@@ -1,104 +1,30 @@
-// import React from 'react'
-// import axios from 'axios';
-// import { useState,useEffect} from 'react';
-// import { motion } from 'framer-motion';
-
-
-
-// const Reviews = ({refresh}) => {
-//  const[reviews,setReviews]=useState([]);
-//  const [loading, setLoading] = useState(true);
-
-//    const fetchReviews = async () => {
-//         try {
-//             const response = await axios.get("https://6922dcec09df4a4923238a99.mockapi.io/Product_reviewa");
-//             setReviews(response.data);
-//             console.log(response.data);
-//         } catch (error) {
-//             console.error("Error fetching reviews:", error);
-//         }finally {
-//             setLoading(false);
-//         }
-//     };
-
-//  useEffect(() => {
-//     fetchReviews();
-//  }, [refresh]);
-
-
-// //   if (reviews.length === 0) {
-// //     return <div>No reviews available.</div>;
-// //   }
-
-
-
-
-
-//   return (
-//     <section id='Reviews' className='py-24' >
-//       <div className='text-center'>
-//         <h1 className=' text-2xl md:text-4xl lg:text-4xl font-serif mb-10'>⭐Customer Reviews</h1>
-//         <p className='text-lg w-75 md:w-100 lg:w-full mx-auto'>"Here’s what our customers have to say about their experience with us."</p>
-//         <p className='mt-5 font-semibold '>We value our customers, and their feedback helps us grow.</p>
-//       </div>
-//       <div className='flex justify-center flex-wrap gap-5 w-full'>
-//       {loading ? (<div><h1>loading Customers Reviews</h1></div> ) : (  reviews.length === 0 ? (<div className='w-full  flex justify-center'>
-//         <div className='w-75 h-auto border border-rose-500 rounded-lg p-5 m-5 shadow-lg shadow-gray-400'>
-//         <h1 className='text-center  '>No Reviews Available</h1>
-//         </div>
-//         </div>) : (
-//       <motion.div
-          
-//           initial={{ y: 50, opacity: 0 }}
-//           whileInView={{ y: 0, opacity: 1 }}
-//           transition={{ duration: 1.5, ease: 'easeOut' }}
-//           viewport={{ amount: 0.3 }}
-      
-//       className='w-full flex flex-wrap justify-center gap-5 mt-5'>
-    
-//        {reviews.map((rev)=>(
-//         <div key={rev.id} className='w-70 md:w-100 lg:w-100 h-auto border border-amber-300 rounded-lg p-5 m-5 shadow-lg shadow-rose-200 transition-all hover:scale-105 flex flex-col justify-between'>
-//             <div className='grow'>
-//             <p className='text-md  md:text-lg lg:text-lg font-medium text-gray-600'>{rev.message}</p>
-//             <p className='text-xl md:text-2xl lg:text-2xl mt-3'>{rev.rating}⭐</p> 
-//           </div> 
-//             <h1 className='mt-2 font-semibold text-amber-800 '>-{rev.name}</h1>
-            
-//         </div>
-//        ))}</motion.div>
-       
-     
-//       )
-//      )}
-//      </div>
-//     </section>
-//   )
-// }
-
-// export default Reviews
-
 
 import React, { useEffect, useState, useMemo, useRef } from "react";
-import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
 
-const Reviews = ({ refresh }) => {
+import { motion, AnimatePresence } from "framer-motion";
+import AddReview from "./AddReview";
+import { getAllReviews } from "../services/ReviewService.js";
+
+const Reviews = () => {
   const sectionRef = useRef(null);
 
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasReached, setHasReached] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const[addReviewModalOpen, setAddReviewModalOpen]=useState(false);
+
+  const[refreshKey,setRefreshKey]=useState(0)
 
   const chunkSize = 2;
 
   // 🔹 Fetch reviews from API
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(
-        "https://6922dcec09df4a4923238a99.mockapi.io/Product_reviewa"
-      );
-      setReviews(res.data || []);
+      const res = await getAllReviews();
+        setReviews(res || []);
+      
+      
     } catch (err) {
       console.error("Error fetching reviews:", err);
     } finally {
@@ -108,7 +34,17 @@ const Reviews = ({ refresh }) => {
 
   useEffect(() => {
     fetchReviews();
-  }, [refresh]);
+  }, [refreshKey]);
+
+  useEffect(() => {
+  if (addReviewModalOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => (document.body.style.overflow = "auto");
+}, [addReviewModalOpen]);
 
   // 🔹 Detect section visibility
   useEffect(() => {
@@ -147,7 +83,7 @@ const Reviews = ({ refresh }) => {
       id="Reviews"
       className="w-full bg-[#f7e7cc] py-20 px-4"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto ">
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#2F2A24]">
@@ -201,14 +137,15 @@ const Reviews = ({ refresh }) => {
                     shadow-md
                     hover:shadow-xl
                     transition
-                    p-6
+                    p-2
                     flex
                     flex-col
                     justify-between
                   "
                 >
+                  
                   <p className="text-sm sm:text-base text-[#4B4036] leading-relaxed mb-4">
-                    “{rev.message}”
+                    “{rev.comment}”
                   </p>
 
                   <div className="flex justify-between items-center mt-auto">
@@ -216,15 +153,25 @@ const Reviews = ({ refresh }) => {
                       {rev.rating} ★
                     </p>
                     <p className="text-sm font-medium text-[#8B5E34]">
-                      — {rev.name}
+                      — {rev.username}
                     </p>
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            
+            </motion.div> 
           </AnimatePresence>
         )}
       </div>
+      <div className="mt-10 p-6 text-center">
+       <button
+       onClick={()=>setAddReviewModalOpen(true)}
+       className="bg-black text-white py-2 px-4 rounded-xl transition-all hover:scale-105 ">Add Review</button>
+       </div>
+
+       
+{ addReviewModalOpen && <AddReview onClose={()=>setAddReviewModalOpen(false)}
+                                    onReviewAdded={()=>setRefreshKey((prev)=>prev+1)} /> }
     </section>
   );
 };

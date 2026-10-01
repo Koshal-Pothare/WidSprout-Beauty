@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion';
+import home2 from '../assets/home2.png';
 
 
 
@@ -8,10 +9,7 @@ const About = () => {
     <section  className="w-full py-12 md:py-24 scroll-mt-28  relative  h-full md:h-[800px] overflow-hidden " >
         <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6   'id='About' >
 
-  {/* <div
-    id="about-bottle-anchor"
-    className="absolute top-1/2 left-1/2"
-  /> */}
+ 
           
         <motion.h1
         initial={{ y: 40, opacity: 0.5 }}
@@ -51,18 +49,22 @@ beautifully.
 </motion.div>
         </div>    
 
-        <div className='bg-linear-to-b hidden md:block from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)]   w-50 h-50 md:w-75 md:h-100 mt-10  lg:ml-15 rounded-full'>
+        <div className=' hidden md:block   w-50 h-50 md:w-100 md:h-[520px] mt-10   rounded-full'
+        style={{
+          backgroundImage: `url(${home2})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}>
 <div
     id="about-bottle-anchor"
     className="absolute  top-1/2 left-1/2 "
   />
 
 </div>
-               </div>
-                </div>
-
-                
-                
+</div>
+</div>
+  
     </section>
   )
 }

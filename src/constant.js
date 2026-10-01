@@ -1,10 +1,7 @@
-import image1 from './assets/image1.png';
-import image2 from './assets/image2.png';
-import image3 from './assets/image3.png';
-import image4 from './assets/image4.png';
-import tonerr from './assets/tonerr.png';
+
+
 import lipbalm2 from './assets/lipbalm2.png';
-import rose from './assets/rose.png';
+
 
 import mask1 from './assets/mask1.png';
 import toner1 from './assets/toner1.png';      

@@ -1,14 +1,12 @@
 import React from 'react'
-import facemask from '../assets/facemask.png';
 import { motion } from 'framer-motion';
-import mask2 from '../assets/mask2.png';
 import lipbalm2 from '../assets/lipbalm2.png';
 import { Sparkles, Leaf, Droplets, Flower2 } from "lucide-react";
 import { Link } from 'react-router-dom';
 
 const About2 = () => {
       return (
-            <section id='About' className="w-full pt-10 md:pt-35 scroll-mt-28  relative h-[900px]  md:h-[800px] overflow-hidden flex justify-center " >
+            <section id='About' className=" block md:hidden w-full pt-10 md:pt-35 scroll-mt-28  relative h-[900px]  md:h-[800px] overflow-hidden flex justify-center " >
                   <div className='w-[1000px] h-100  md:mt-10  flex justify-around items-center gap-3 flex-wrap'>
                         <div className='w-50 h-75 md:w-75 md:h-100 rounded-full  bg-linear-to-b from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)] flex justify-center items-center'>
                               <motion.img
@@ -17,7 +15,7 @@ const About2 = () => {
                                     transition={{ duration: 1, ease: "easeOut" }}
                                     viewport={{ amount: 0.3, once: true }}
 
-                                    src={lipbalm2} alt="Facemask" className='w-48 h-56 md:w-72 md:h-72 lg:w-[400px] lg:h-[300px]  ' />
+                                    src={lipbalm2} alt="lipbslm" className='w-48 h-56 md:w-72 md:h-72 lg:w-[400px] lg:h-[300px]  ' />
                         </div>
 
 
