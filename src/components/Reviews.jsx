@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AddReview from "./AddReview";
 
-import { getAllReviews } from "../services/ReviewService.js";
+
 
 import { getAllReviews } from "../services/ReviewService";
 
