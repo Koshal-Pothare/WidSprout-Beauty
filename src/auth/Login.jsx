@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import Swal2 from "sweetalert2";
 
-import LoginImage from "../assets/LoginImage.png";
+import loginImage from "../assets/loginImage.png";
 import { login, signup } from "../services/api.js";
  
 
@@ -206,7 +206,7 @@ const Login = () => {
         >
 
           <img
-            src={LoginImage}
+            src={loginImage}
             alt="WildSprout Beauty"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
