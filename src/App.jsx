@@ -79,7 +79,6 @@ const hideLayout = [
       />
 
 
-       <Navbar /> {/* ✅ Always visible */}
 
 
       <Routes>
