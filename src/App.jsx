@@ -25,7 +25,7 @@ import Cart from './Pages/Cart'
 import Contact from './Pages/Contact'
 import AdminPanel from './components/AdminPanel'
 import UserDashboard from './user/UserDashboard'
-import { ToastContainer,toast,Bounce } from 'react-toastify';
+
 import OAuthSuccess from './components/OAuthSuccess';
 
 import AdminRegister from './auth/AdminRegister';
