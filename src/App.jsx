@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { useState,useEffect } from 'react'
+import { useState,useLayoutEffect } from 'react'
 import {  Routes, Route,useLocation } from 'react-router-dom';
 
 
@@ -41,9 +41,10 @@ function App() {
   const [refresh , setRefresh] = useState(0);
    const location = useLocation();
 
-   useEffect(()=>{
-    window.scrollTo(0,0)
-   },[location.pathname]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
 const hideLayout = [
   "/admin-register",
@@ -64,20 +65,7 @@ const hideLayout = [
 
      {!hideNavbarFooter && <Navbar />} 
 
-    <ToastContainer
-      position="top-right"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick={false}
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="colored"
-      transition={Bounce}
-      />
-
+ 
 
 
 

@@ -11,9 +11,7 @@ body{
   background-color: #f7e7cc;   
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 .bottle {
   position: fixed;
