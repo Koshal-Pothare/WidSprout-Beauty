@@ -23,7 +23,7 @@ import AboutUs from './Pages/AboutUs'
 import Login from './auth/Login'
 import Cart from './Pages/Cart'
 import Contact from './Pages/Contact'
-import AdminPanel from './components/AdminPanel'
+import AdminPanel from './admin/AdminPanel'
 import UserDashboard from './user/UserDashboard'
 
 import OAuthSuccess from './components/OAuthSuccess';

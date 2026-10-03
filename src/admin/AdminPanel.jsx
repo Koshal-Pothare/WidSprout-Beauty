@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router";
-import AddProduct from './AddProduct';
+import AddProduct from '../admin/AddProduct';
 
 
 import { login } from "../services/api";

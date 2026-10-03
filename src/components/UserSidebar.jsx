@@ -12,6 +12,7 @@ import {
   Leaf,
 } from "lucide-react";
 import SidebarItem from "./UserSideBarItem";
+import Logo1 from "../assets/logo1.png";
 
 const Sidebar = ({
   activePage,
@@ -26,8 +27,8 @@ const Sidebar = ({
 
         <div className="mb-6 border-b border-[#E9D9AE] pb-5">
           <div className="flex items-center gap-2">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E6D1] text-[#31583F]">
-              <Leaf size={25} />
+            <div className="flex h-11 w-11 items-center justify-center rounded-full  text-[#31583F]">
+             <img src={Logo1} alt="Logo" className="h-full w-full" />
             </div>
 
             <div>
@@ -36,7 +37,7 @@ const Sidebar = ({
               </h1>
 
               <p className="text-[9px] uppercase tracking-[0.25em] text-[#B85C00]">
-                Natural Skincare
+                beauty
               </p>
             </div>
           </div>
